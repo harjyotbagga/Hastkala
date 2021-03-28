@@ -1,0 +1,415 @@
+input {
+    outline: none;
+}
+
+input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    font-size: 100%;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+    display: none;
+}
+
+input[type=search] {
+    background: url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    width: 55px;
+    height: 35px;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+
+/* Demo 2 */
+
+#demo-2 input[type=search] {
+    width: 15px;
+    padding-left: 20px;
+    color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+#demo-2 input[type=search]:hover {
+    background-color: #fff;
+}
+
+#demo-2 input[type=search]:focus {
+    width: 130px;
+    padding-left: 32px;
+    color: #000;
+    background-color: #fff;
+    cursor: auto;
+    border: 2px solid black;
+}
+
+#demo-2 input:-moz-placeholder {
+    color: transparent;
+}
+
+#demo-2 input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.navbar .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.navbar .dropdown-menu {
+    left: -54rem;
+    width: 80rem;
+    box-shadow: 0px 0px 15px #ebebeb;
+    padding: 1%;
+    background-color: white;
+}
+
+.navbar .dropdown-menu a {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    color: #646464;
+}
+
+.tab-content .row {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1;
+    margin-top: 1%;
+}
+
+.tab-content .row a {
+    text-decoration: none;
+    color: #646464;
+    text-align: left;
+    font-size: 12px;
+    font-weight: lighter;
+}
+
+.navbar .dropdown-menu .nav-link {
+    color: #646464 !important;
+    font-weight: lighter !important;
+    text-align: left !important;
+    padding-left: 5% !important;
+}
+
+.navbar .dropdown-menu .navbar-tabs {
+    border-right: 1px solid #dadada;
+}
+
+.navbar-dropdown-heading a {
+    font-weight: bolder !important;
+}
+
+.navbar .dropdown-menu .nav-link.active {
+    background-color: rgb(214, 214, 214) !important;
+}
+
+ul,
+#myUL {
+    list-style-type: none;
+}
+
+#myUL {
+    margin: 0;
+    padding: 0;
+    color: #646464;
+    font-size: 14px;
+}
+
+.caret {
+    cursor: pointer;
+    user-select: none;
+}
+
+.caret::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.caret-down::before {
+    -ms-transform: rotate(90deg);
+    /* IE 9 */
+    -webkit-transform: rotate(90deg);
+    /* Safari */
+    transform: rotate(90deg);
+}
+
+.nested {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+
+/*spicebox page*/
+
+.spicehead {
+    padding: 55px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-col {
+    color: #3d4246;
+}
+
+.sec-col {
+    color: #8d9398;
+}
+
+.main-font {
+    font-family: 'Work-sans', sans-serif;
+    font-size: 16px;
+}
+
+.grid-list a:hover,
+.grid-list a.active {
+    color: #646464;
+}
+
+.grid-list a {
+    color: #000;
+    padding: 5px;
+}
+
+.grid-list {
+    margin: 0 auto;
+    font-size: 14px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.filters-toolbar__input {
+    border: 0 solid transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    height: auto;
+    opacity: 1;
+    position: relative;
+    margin: -16px;
+}
+
+body {
+    font-family: 'Work Sans', sans-serif;
+    color: #3d4246;
+}
+
+.filter-btn {
+    border: 1px solid #e3e0e0;
+    border-radius: 2px;
+    font-size: 14px;
+    margin: 3px;
+    width: 90px;
+}
+
+.filter-btn:focus {
+    border-bottom: 0px !important;
+}
+
+.filter-btn-menu {
+    min-width: 1200px;
+}
+
+.pricemenu {
+    left: 0;
+}
+
+.materialmenu {
+    left: -100% !important;
+}
+
+.artmenu {
+    left: -102% !important;
+}
+
+
+/*pricerange filter*/
+
+
+/*grid view*/
+
+.gridview-img {
+    position: relative;
+}
+
+.gridview-img img {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 90%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.middle .fa {
+    color: white;
+}
+
+.gridview-img:hover img {
+    opacity: 0.9;
+}
+
+.gridview-img:hover .middle {
+    opacity: 1;
+}
+
+
+/*list view*/
+
+.tab-pane img {
+    width: 100%;
+}
+
+
+/*twelveblendspage*/
+
+.cart__qty-input {
+    text-align: center;
+    width: 100px;
+    padding-left: 2px;
+    padding-right: 5px;
+}
+
+.text-left input {
+    padding: 2px 5px;
+}
+
+.addtocart-btn {
+    border: 2px solid #557b97;
+}
+
+.buynow-btn {
+    background-color: #557b97;
+}
+
+.buynow-btn:hover {
+    background-color: #48677c;
+}
+
+.slick-prev:before {
+    background-size: 50px 50px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+    content: "";
+    left: -36px !important;
+    color: black !important;
+}
+
+.slick-next:before {
+    background-size: 50px 50px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+    content: "";
+    color: black !important;
+}
+
+.slick-prev {
+    left: -35px !important;
+}
+
+.slick-next {
+    right: -5px !important;
+}
+
+.tabborder {
+    border-bottom: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+}
+
+.test-scroll {
+    height: 700px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+.test-scroll img {
+    width: 75%;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+ ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.test-head {
+    background-color: #2fa9ff;
+    height: 100px;
+    color: white;
+    font-size: xx-large;
+    line-height: normal;
+}
+
+.test-head-full {
+    border: 1px solid #2fa9ff;
+    width: 44%;
+}
+
+.test-height {
+    height: 25% !important;
+}
+
+@media only screen and (max-width: 576px) {
+    .navbar-brand {
+        width: 30%;
+    }
+    .navbar-brand img {
+        width: 100% !important;
+    }
+    .dropdown-menu {
+        width: auto !important;
+    }
+    .filter-btn-menu {
+        min-width: 15rem;
+    }
+    .navbar .dropdown-menu img {
+        width: 100% !important;
+    }
+    input[type=search] {
+        background: none;
+        width: 100%;
+    }
+    .spicehead {
+        padding: 12px;
+    }
+    .test-head {
+        font-size: x-large;
+    }
+    .test-height {
+        height: 35% !important;
+    }
+}
