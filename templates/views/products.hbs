@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-md-4 col-6">
                     <ul class="mb-0">
-                        <li class="nav-item align-self-center" role="presentation"><i>24 Products</i></li>
+                        <li class="nav-item align-self-center" role="presentation"><i>{{product_count}} Product(s)</i></li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-12">
@@ -130,25 +130,28 @@
     <div class="tab-content  " id="pills-tabContent">
         <div class="tab-pane spicehead fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <div class="row">
+                {{#each product_list}}
                 <div class="col-md-4">
-                    <a href="/product">
+                    {{!-- <a href="/product" > --}}
+                    <a id={{this._id}} onclick="GotoProductPage(this)">
                         <div class="gridview-img mb-3">
                             <img src="./assets/images/products/EL-005-614_A_1024x1024@2x.jpg">
                             <div class="middle">
                                 <a href="/cart" class="btn btn-dark"><i class="fa fa-shopping-cart " aria-hidden="true"></i></a>
                             </div>
                         </div>
-                        <p>"Twelve Blends" Spice Box with 12 containers & spoon in Sheesham wood</p>
+                        <p>{{ this.name }}</p>
                         <p> <span><i class="fa fa-star" aria-hidden="true"></i></span>
                             <span><i class="fa fa-star" aria-hidden="true"></i></span>
                             <span><i class="fa fa-star" aria-hidden="true"></i></span>
                             <span><i class="fa fa-star" aria-hidden="true"></i></span>
                             <span><i class="fa fa-star" aria-hidden="true"></i></span>
                             <span>7 Reviews</span></p>
-                        <p><small class="text-muted" style="text-decoration:line-through;">Rs.1890</small>&emsp;Rs.1600</p>
+                        <p><small class="text-muted" style="text-decoration:line-through;">Rs. 2000</small>&emsp;Rs. {{this.price}}</p>
                         <a href="/cart" class="btn btn-outline-dark d-block d-md-none d-lg-none w-50">Add To Cart</a><br>
                     </a>
                 </div>
+                {{/each}}
             </div>
         </div>
         <div class="tab-pane fade spicehead " id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -173,4 +176,10 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function GotoProductPage(ele) {
+            var id = ele.id;
+            window.location.replace(`/product?id=${id}`)
+        }
+    </script>
 {{> footera}}

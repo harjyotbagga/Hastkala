@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const hbs = require('hbs');
+require('./db/mongoose');
 
 const authRouter = require('./routers/auth');
 const indexRouter = require('./routers/index');

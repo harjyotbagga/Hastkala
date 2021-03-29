@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <p style="font-size: xx-large;">"Twelve Blends" Spice Box With 12 Containers & Spoon In Sheesham Wood</p>
+                <p style="font-size: xx-large;">{{product.name}}</p>
                 <p> <span><i class="fa fa-star" aria-hidden="true"></i></span>
                     <span><i class="fa fa-star" aria-hidden="true"></i></span>
                     <span><i class="fa fa-star" aria-hidden="true"></i></span>
@@ -40,7 +40,7 @@
                     <span><i class="fa fa-star" aria-hidden="true"></i></span>
                     <span>7 Reviews</span>
                 </p>
-                <span class="text-muted " style="text-decoration:line-through;font-size: large;">Rs.1890</span><span style="font-size: large;">&emsp;Rs.1600 Sale</p>
+                <span class="text-muted " style="text-decoration:line-through;font-size: large;">Rs.2000</span><span style="font-size: large;">&emsp;Rs.{{product.price}} Sale</p>
                 <p class="text-muted">Tax Included.</p>
                 <p class="text-left sm-hide">Quantity
                     <div class="text-left">
@@ -51,19 +51,19 @@
                 <a href="/cart_infopage" class="btn buynow-btn w-50">BUY IT NOW</a><br><br>
 <p>
   <strong>  SKU:</strong>
-EL-005-614 
+{{product._id}}
 </p><p>
 <strong>MATERIAL:</strong>
-Sheesham Wood
+{{product.info.material}}
 </p><p>
 <strong>DIMENSIONS:</strong>
-SPICE BOX: (L * W * H) = (9.9 * 7.7 * 2.1), CONTAINERS: (L * W * H) = (2.2 * 2.2 * 1.1), SPOON: (L * W ) = (5.5 * 0.9) Inch
+{{product.info.dimensions}}
 </p><p>
 <strong>ART TYPE:</strong>
-The Spice Box is Handcrafted in Sheesham Wood and Polished with Food Safe Lacquer
+{{product.info.art_type}}
 </p><p>
 <strong>CAPACITY: </strong>
-Each Container: 45 ML
+{{product.info.capacity}}
 </p>
     <div class="row" style="text-align: center;">
      <div class="col-md-3" style="width: 25.0411%; border: none; font-size: 70%; vertical-align: text-top; text-align: center;"><img src="https://i.ibb.co/tKBK977/10.png" width="100">
