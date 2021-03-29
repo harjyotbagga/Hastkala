@@ -11,7 +11,7 @@ const userRouter = require('./routers/user');
 const orderRouter = require('./routers/order');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 // Defining paths
 const PUBLIC_DIR_PATH = path.join(__dirname, '../public');
