@@ -1,9 +1,16 @@
 const express = require('express');
 const router = new express.Router();
-const User = require('../models/user');
+const UserController = require('../controllers/user');
 
 router.get('/login', (req, res) => {
-    res.render('login');
+    if (req.query.user_created===true) {
+        user_registered=true;
+    } else {
+        user_registered=false;
+    }
+    res.render('login', {
+        user_registered,
+    });
 });
 
 router.get('/register', (req, res) => {
@@ -11,23 +18,19 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const user = User(req.body);
-    try {
-        console.log(user);
-        res.status(201).send();
-    } catch (e) {
-        res.send(e);
-    }
+    
 });
 
 router.post('/register', async (req, res) => {
-    const user = User(req.body);
-    try {
-        console.log(user);
-        res.status(201).send();
-    } catch (e) {
-        res.send(e);
-    }
+    UserController.createUser(req.body)
+        .then((resp) => {
+            res.redirect('login?user_created=true');
+        })
+        .catch((e) => {
+            res.render('error', {
+                error_code: 500
+            });
+        });
 });
 
 module.exports = router;
