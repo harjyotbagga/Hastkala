@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 const hbs = require('hbs');
 require('./utils/mongoose');
@@ -13,9 +14,12 @@ const orderRouter = require('./routers/order');
 const app = express();
 const PORT = process.env.PORT;
 
-
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(cookieParser());
+
+// TODO: Implement CSRF accross website
+// app.use(csurf());
 
 // Defining paths
 const PUBLIC_DIR_PATH = path.join(__dirname, '../public');

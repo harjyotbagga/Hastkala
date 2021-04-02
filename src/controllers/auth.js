@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 const login = async (login_creds) => {
@@ -9,6 +10,24 @@ const login = async (login_creds) => {
             const token = await user.generateAuthToken();
             console.log(chalk.green('User Logged in!'));
             resolve(token);
+        } catch (e) {
+            console.log(chalk.red(`ERROR: ${e}`));
+            reject(e);
+        }
+    });
+}
+
+const logout = async (auth_token) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const decoded_token = jwt.verify(auth_token, process.env.JSON_SECRET_TOKEN);
+            const user = await User.findOne({_id: decoded_token._id, 'tokens.token': auth_token});
+            user.tokens = user.tokens.filter((token) => {
+                return token.token !== auth_token;
+            });
+            await user.save();
+            console.log(chalk.green('User Logged Out!'));
+            resolve();
         } catch (e) {
             console.log(chalk.red(`ERROR: ${e}`));
             reject(e);
@@ -35,6 +54,7 @@ const createUser = async (user_details) => {
 
 module.exports = {
     login,
+    logout,
     createUser,
 
 }

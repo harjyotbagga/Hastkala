@@ -1,6 +1,7 @@
 const express = require('express');
 const router = new express.Router();
-const UserController = require('../controllers/user');
+const cookieParser = require('cookie-parser');
+const AuthController = require('../controllers/auth');
 const User = require('../models/user');
 
 router.get('/login', (req, res) => {
@@ -17,8 +18,9 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    UserController.login(req.body)
-        .then((resp) => {
+    AuthController.login(req.body)
+        .then((token) => {
+            res.cookie('auth_token', token, {httpOnly: true});
             res.redirect('/');
         })
         .catch((e)=> {
@@ -44,7 +46,7 @@ router.post('/register', async (req, res) => {
             user_exists
         });
     } else {
-        UserController.createUser(req.body)
+        AuthController.createUser(req.body)
             .then((resp) => {
                 res.redirect('login?user_created=true');
             })
@@ -54,6 +56,33 @@ router.post('/register', async (req, res) => {
                 });
             });
     }
+});
+
+router.get('/logout', (req, res) => {
+    AuthController.logout(req.cookies.auth_token)
+        .then((resp) => {
+            res.clearCookie('auth_token');
+            res.redirect('/');
+        })
+        .catch((e) => {
+            res.render('error', {
+                error_code: 500
+            });
+        });
+});
+
+router.get('/status', async (req, res) => {
+    if (req.cookies.auth_token) {
+        jwt = require('jsonwebtoken');
+        const token = req.cookies.auth_token;
+        const decoded_token = jwt.verify(token, process.env.JSON_SECRET_TOKEN);
+        const user = await User.findOne({_id: decoded_token._id, 'tokens.token': token});
+        // console.log(user)
+    }
+    res.send({
+        'Headers': req.headers,
+        'cookies': req.cookies,
+    });
 });
 
 module.exports = router;

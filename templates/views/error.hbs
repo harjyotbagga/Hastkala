@@ -3,18 +3,18 @@
 
 <script src="../../public/assets/js/hbs_equality.js"></script>
 <div class="x" style="background-image: url('./assets/images/index_assets/error_bg1.jpg');background-size: cover;margin: 0;height: 90%;">
-    <div class="container" style="text-align: center; height: 80%; padding: 10%">
+    <div class="container" style="text-align: center; height: 80%; padding: 10%;">
         <div class="display-1" style="color: black;">
             Error {{error_code}}
         </div>
         <br><br>
         {{#ifEquals error_code 404}}
-            <p style="font-size: 1.4rem;;">
+            <p style="font-size: 1.4rem;">
                 <b>The page you are looking for doesn't exist. It may have been moved or removed altogether. Please try searching for some other page, or return to the site's homepage to find what you're looking for.</b>
             </p>
         {{/ifEquals}}
         {{#ifEquals error_code 500}}
-            <p style="font-size: 1.4rem;;">
+            <p style="font-size: 1.4rem;">
                 <b>We are facing an Internal Server Error. Please retry again later! We are sorry for your inconvinience.</b>
             </p>
         {{/ifEquals}}
