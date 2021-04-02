@@ -42,13 +42,17 @@
                 </p>
                 <span class="text-muted " style="text-decoration:line-through;font-size: large;">Rs.2000</span><span style="font-size: large;">&emsp;Rs.{{product.price}} Sale</p>
                 <p class="text-muted">Tax Included.</p>
-                <p class="text-left sm-hide">Quantity
-                    <div class="text-left">
-                      <input class="cart__qty-input" type="number" value="1" min="0" pattern="[0-9]*" data-quantity-item="1">
-                    </div>
-                </p>
-                <a href="/cart" class="btn addtocart-btn mb-2 w-50"> ADD TO CART</a>
-                <a href="/cart_infopage" class="btn buynow-btn w-50">BUY IT NOW</a><br><br>
+                <form action="/cart?id={{product._id}}" method="POST">
+                    <p class="text-left sm-hide">Quantity
+                        <div class="text-left">
+                            <input id="#product_id" name="product_id" type="hidden"  value="{{product._id}}">
+                            <input name="product_qty" id = "#product_qty" class="cart__qty-input" type="number" value="1" min="0" pattern="[0-9]*" data-quantity-item="1">
+                        </div>
+                    </p>
+                    <input type="submit" class="btn addtocart-btn mb-2 w-50" name="product_btn" id="#product_btn" value="CART">
+                    <input type="submit" class="btn buynow-btn w-50" name="product_btn" id="#product_btn" value="BUY">
+                </form>
+                <br><br>
 <p>
   <strong>  SKU:</strong>
 {{product._id}}

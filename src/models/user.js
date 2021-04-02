@@ -56,6 +56,16 @@ const userSchema = mongoose.Schema({
             }
         }
     }],
+    cart: [{
+        'product': {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        },
+        'qty': {
+            type: Number,
+            default: 1
+        }
+    }],
     tokens: [{
         'token': {
             type: String,

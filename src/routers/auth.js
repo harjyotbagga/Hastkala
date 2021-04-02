@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
     AuthController.login(req.body)
         .then((token) => {
             res.cookie('auth_token', token, {httpOnly: true});
-            res.redirect('/');
+            res.redirect('/products');
         })
         .catch((e)=> {
             login_error = true;
@@ -67,21 +67,24 @@ router.get('/logout', (req, res) => {
         .catch((e) => {
             res.render('error', {
                 error_code: 500
-            });
+            }); 
         });
 });
 
 router.get('/status', async (req, res) => {
+    var usr = '';
     if (req.cookies.auth_token) {
         jwt = require('jsonwebtoken');
         const token = req.cookies.auth_token;
         const decoded_token = jwt.verify(token, process.env.JSON_SECRET_TOKEN);
         const user = await User.findOne({_id: decoded_token._id, 'tokens.token': token});
+        usr = user;
         // console.log(user)
     }
     res.send({
         'Headers': req.headers,
         'cookies': req.cookies,
+        usr
     });
 });
 
