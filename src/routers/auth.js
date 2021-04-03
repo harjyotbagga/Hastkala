@@ -3,6 +3,7 @@ const router = new express.Router();
 const cookieParser = require('cookie-parser');
 const AuthController = require('../controllers/auth');
 const User = require('../models/user');
+const chalk = require('chalk');
 
 router.get('/login', (req, res) => {
     login_error = false;
@@ -72,20 +73,27 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/status', async (req, res) => {
-    var usr = '';
-    if (req.cookies.auth_token) {
-        jwt = require('jsonwebtoken');
-        const token = req.cookies.auth_token;
-        const decoded_token = jwt.verify(token, process.env.JSON_SECRET_TOKEN);
-        const user = await User.findOne({_id: decoded_token._id, 'tokens.token': token});
-        usr = user;
-        // console.log(user)
+    try {
+        var usr = '';
+        if (req.cookies.auth_token) {
+            jwt = require('jsonwebtoken');
+            const token = req.cookies.auth_token;
+            const decoded_token = jwt.verify(token, process.env.JSON_SECRET_TOKEN);
+            const user = await User.findOne({_id: decoded_token._id, 'tokens.token': token});
+            usr = user;
+            // console.log(user)
+        }
+        res.send({
+            'Headers': req.headers,
+            'cookies': req.cookies,
+            usr
+        });
+    } catch (e) {
+        console.log(chalk.red(`ERROR: ${e}`));
+        res.render('error', {
+            error_code: 500
+        }); 
     }
-    res.send({
-        'Headers': req.headers,
-        'cookies': req.cookies,
-        usr
-    });
 });
 
 module.exports = router;

@@ -42,7 +42,8 @@
                 </p>
                 <span class="text-muted " style="text-decoration:line-through;font-size: large;">Rs.2000</span><span style="font-size: large;">&emsp;Rs.{{product.price}} Sale</p>
                 <p class="text-muted">Tax Included.</p>
-                <form action="/cart?id={{product._id}}" method="POST">
+                {{!-- <form action="/cart?id={{product._id}}" method="POST"> --}}
+                <form action="/add_to_cart" method="POST">
                     <p class="text-left sm-hide">Quantity
                         <div class="text-left">
                             <input id="#product_id" name="product_id" type="hidden"  value="{{product._id}}">
