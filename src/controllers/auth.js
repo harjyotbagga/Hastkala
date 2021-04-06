@@ -41,8 +41,8 @@ const createUser = async (user_details) => {
         try {
             const user = User(user_details);
             await user.save();
-            // TODO: If user already exists
-            token = await user.generateAuthToken();
+            // As redirecting to user login, and not logging in user yet!!
+            // token = await user.generateAuthToken();
             console.log(chalk.green('User Created!'));
             resolve('User Added');
         } catch (e) {
@@ -53,15 +53,15 @@ const createUser = async (user_details) => {
 }
 
 const isLoggedIn = async (cookies) => {
-    console.log(cookies);
     if (cookies.auth_token) {
         const token = cookies.auth_token;
         const decoded_token = jwt.verify(token, process.env.JSON_SECRET_TOKEN);
         const user = await User.findOne({_id: decoded_token._id, 'tokens.token': token});
-        if (user)
+        if (user) {
             return true;
-        else
-            return false
+        } else {
+            return false;
+        }
     }
     return false;
 }

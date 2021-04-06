@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "npm start",
     "dev": "env-cmd -f ./config/dev.env nodemon src/app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Harjyot Singh Bagga",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

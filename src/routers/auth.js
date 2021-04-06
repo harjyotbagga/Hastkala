@@ -5,11 +5,14 @@ const AuthController = require('../controllers/auth');
 const User = require('../models/user');
 const chalk = require('chalk');
 
-router.get('/login', (req, res) => {
-    if (AuthController.isLoggedIn(req.cookies))
+router.get('/login', async (req, res) => {
+    const isLoggedIn = await AuthController.isLoggedIn(req.cookies);
+    if (isLoggedIn) {
+        console.log('true');
         res.redirect('/profile');
-    else {
+    } else {
         login_error = false;
+        not_authenticated = false;
         if (req.query.user_created===true) {
             user_registered=true;
         } else {
@@ -53,7 +56,7 @@ router.post('/register', async (req, res) => {
     } else {
         AuthController.createUser(req.body)
             .then((resp) => {
-                res.redirect('login?user_created=true');
+                res.redirect('/login?user_created=true');
             })
             .catch((e) => {
                 res.render('error', {
@@ -70,9 +73,7 @@ router.get('/logout', (req, res) => {
             res.redirect('/');
         })
         .catch((e) => {
-            res.render('error', {
-                error_code: 500
-            }); 
+            res.redirect('/'); 
         });
 });
 
