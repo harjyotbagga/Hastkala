@@ -52,9 +52,24 @@ const createUser = async (user_details) => {
     }); 
 }
 
+const isLoggedIn = async (cookies) => {
+    console.log(cookies);
+    if (cookies.auth_token) {
+        const token = cookies.auth_token;
+        const decoded_token = jwt.verify(token, process.env.JSON_SECRET_TOKEN);
+        const user = await User.findOne({_id: decoded_token._id, 'tokens.token': token});
+        if (user)
+            return true;
+        else
+            return false
+    }
+    return false;
+}
+
 module.exports = {
     login,
     logout,
     createUser,
+    isLoggedIn,
 
 }

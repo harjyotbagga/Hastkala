@@ -11,7 +11,7 @@ const addToCart = async (query) => {
             var productAdded = false;
             user.cart.forEach((item) => {
                 if (item.product == product._id.toString()) {
-                    item.qty += 1;
+                    item.qty += parseInt(qty);
                     productAdded=true;
                     return;
                 }
@@ -21,6 +21,32 @@ const addToCart = async (query) => {
             }
             await user.save();
             console.log(chalk.green("PRODUCT ADDED TO CART!"));
+            resolve(user);
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
+
+const removeFromCart = async (query) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const user = query.user;
+            const product = await Product.findOne({_id: query.product_id});
+            const qty = query.qty;
+            user.cart.forEach((item) => {
+                if (item.product == product._id.toString()) {
+                    item.qty -= 1;
+                    if (item.qty<=0) {
+                        user.cart = user.cart.filter((prod) => {
+                            return prod.product != product._id.toString();
+                        });
+                    }
+                    return;
+                }
+            });
+            await user.save();
+            console.log(chalk.green("PRODUCT REMOVED FROM CART!"));
             resolve(user);
         } catch (e) {
             reject(e);
@@ -49,5 +75,6 @@ const getCart = async (user) => {
 
 module.exports = {
     addToCart,
+    removeFromCart,
     getCart,
 }

@@ -6,16 +6,20 @@ const User = require('../models/user');
 const chalk = require('chalk');
 
 router.get('/login', (req, res) => {
-    login_error = false;
-    if (req.query.user_created===true) {
-        user_registered=true;
-    } else {
-        user_registered=false;
+    if (AuthController.isLoggedIn(req.cookies))
+        res.redirect('/profile');
+    else {
+        login_error = false;
+        if (req.query.user_created===true) {
+            user_registered=true;
+        } else {
+            user_registered=false;
+        }
+        res.render('login', {
+            user_registered,
+            login_error
+        });
     }
-    res.render('login', {
-        user_registered,
-        login_error
-    });
 });
 
 router.post('/login', async (req, res) => {
@@ -74,19 +78,18 @@ router.get('/logout', (req, res) => {
 
 router.get('/status', async (req, res) => {
     try {
-        var usr = '';
+        var user_info = '';
         if (req.cookies.auth_token) {
             jwt = require('jsonwebtoken');
             const token = req.cookies.auth_token;
             const decoded_token = jwt.verify(token, process.env.JSON_SECRET_TOKEN);
             const user = await User.findOne({_id: decoded_token._id, 'tokens.token': token});
-            usr = user;
-            // console.log(user)
+            user_info = user;
         }
         res.send({
             'Headers': req.headers,
             'cookies': req.cookies,
-            usr
+            user_info
         });
     } catch (e) {
         console.log(chalk.red(`ERROR: ${e}`));

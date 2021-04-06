@@ -1,4 +1,9 @@
 {{> header}}
+<head>
+    <title>{{product.name}}</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+
 <section class="spicehead">
         <div class="row">
             <div class="col-md-6">
@@ -50,8 +55,8 @@
                             <input name="product_qty" id = "#product_qty" class="cart__qty-input" type="number" value="1" min="0" pattern="[0-9]*" data-quantity-item="1">
                         </div>
                     </p>
-                    <input type="submit" class="btn addtocart-btn mb-2 w-50" name="product_btn" id="#product_btn" value="CART">
-                    <input type="submit" class="btn buynow-btn w-50" name="product_btn" id="#product_btn" value="BUY">
+                    <input type="submit" class="btn addtocart-btn mb-2 w-50" name="product_btn" id="#product_btn_cart" value="CART">
+                    <input type="submit" class="btn buynow-btn w-50" name="product_btn" id="#product_btn_buy" value="BUY">
                 </form>
                 <br><br>
 <p>
@@ -177,6 +182,11 @@
                 </div>
             </div>
             <hr>
-            
+        </div>
     </section>
+    {{!-- <script>
+        alert("Hello")
+        const Swal = require('sweetalert2')
+        Swal.fire('Hello world!')
+    </script> --}}
 {{> footera}}
