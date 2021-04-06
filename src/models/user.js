@@ -19,7 +19,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        valudate(value) {
+        validate(value) {
             if (!validator.isEmail(value)) {
                 throw new Error("Invalid Email Address");
             }
@@ -70,7 +70,7 @@ const userSchema = mongoose.Schema({
         'token': {
             type: String,
             unique: true,
-            required: true
+            required: true,
         }
     }]
 });
@@ -78,6 +78,9 @@ const userSchema = mongoose.Schema({
 userSchema.methods.generateAuthToken = async function() {
     const user = this;
     const token = jwt.sign({_id: user._id.toString()}, JSON_SECRET_TOKEN);
+    // console.log(user);
+    // console.log(user.tokens);
+    // console.log(token)
     user.tokens = user.tokens.concat({token});
     await user.save();
     return token;

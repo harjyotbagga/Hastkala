@@ -40,9 +40,10 @@ const createUser = async (user_details) => {
         // console.log(user_details);
         try {
             const user = User(user_details);
+            console.log(user);
             await user.save();
             // As redirecting to user login, and not logging in user yet!!
-            // token = await user.generateAuthToken();
+            token = await user.generateAuthToken();
             console.log(chalk.green('User Created!'));
             resolve('User Added');
         } catch (e) {

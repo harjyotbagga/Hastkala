@@ -1,6 +1,5 @@
 const express = require('express');
 const router = new express.Router();
-const cookieParser = require('cookie-parser');
 const AuthController = require('../controllers/auth');
 const User = require('../models/user');
 const chalk = require('chalk');
