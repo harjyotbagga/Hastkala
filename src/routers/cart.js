@@ -17,7 +17,7 @@ router.get('/cart', AuthMiddleware, async (req, res) => {
             res.render('error', {
                 error_code: 500
             });
-        })
+        });
 });
 
 router.post('/add_to_cart', AuthMiddleware, async (req, res) => {
@@ -56,10 +56,20 @@ router.post('/remove_from_cart', AuthMiddleware, async (req, res) => {
         });
 });
 
-router.get('/shipinfo', (req, res) => {
-    res.render('shipinfo', {
-        
-    });
+router.get('/shipinfo', AuthMiddleware, async (req, res) => {
+    ProductController.getCart(req.user)
+        .then(({products, cart_total}) => {
+            res.render('shipinfo', {
+                products,
+                cart_total
+            });
+        })
+        .catch((e) => {
+            console.log(chalk.red(`ERROR: ${e}`));
+            res.render('error', {
+                error_code: 500
+            });
+        });
 });
 
 router.get('/shipping', (req, res) => {

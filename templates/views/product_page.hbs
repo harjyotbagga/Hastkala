@@ -2,9 +2,11 @@
 <head>
     <title>{{product.name}}</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="assets/js/getPriceFormat.js"></script>
 </head>
 
-<section class="spicehead">
+<body onload="getPriceFormat()">
+    <section class="spicehead">
         <div class="row">
             <div class="col-md-6">
                 <div class="container d-flex ">
@@ -45,7 +47,7 @@
                     <span><i class="fa fa-star" aria-hidden="true"></i></span>
                     <span>7 Reviews</span>
                 </p>
-                <span class="text-muted " style="text-decoration:line-through;font-size: large;">Rs.2000</span><span style="font-size: large;">&emsp;Rs.{{product.price}} Sale</p>
+                <span class="text-muted" style="text-decoration:line-through;font-size: large;"><span class="price-content">2000</span></span><span style="font-size: large;">&emsp;<span class="price-content">{{product.price}}</span> Sale</p>
                 <p class="text-muted">Tax Included.</p>
                 {{!-- <form action="/cart?id={{product._id}}" method="POST"> --}}
                 <form action="/add_to_cart" method="POST">
@@ -184,9 +186,6 @@
             <hr>
         </div>
     </section>
-    {{!-- <script>
-        alert("Hello")
-        const Swal = require('sweetalert2')
-        Swal.fire('Hello world!')
-    </script> --}}
-{{> footera}}
+
+    {{> footera}}
+</body>

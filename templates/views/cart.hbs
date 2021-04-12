@@ -1,6 +1,10 @@
 {{> header}}
-<head><title>Cart</title></head>
-<section class="index-section">
+<head>
+    <title>Cart</title>
+    <script src="assets/js/getPriceFormat.js"></script>
+</head>
+<body onload="getPriceFormat()">
+    <section class="index-section">
         <div class="page-content">
             <div class="mb-5 text-center">
                 <h1 class="font-weight-bold">Your cart</h1>
@@ -37,7 +41,7 @@
 
                         </td>
                         <td class="cart_price">
-                            <span id="#product_price">Rs. {{this.product.price}}</span>
+                            <span id="#product_price" class="price-content">{{this.product.price}}</span>
                         </td>
                         <td class="text-right sm-hide">
                             <div class="text-center">
@@ -47,7 +51,7 @@
                         </td>
                         <td class="text-right sm-hide">
                             <div>
-                                <span class="text-right" id="#product_net_price">Rs. {{this.net_price}}</span>
+                                <span class="text-right price-content" id="#product_net_price">{{this.net_price}}</span>
                             </div>
                         </td>
                     </tr>
@@ -58,7 +62,7 @@
                 <div class="row text-right sm-text-center">
                     <div class="col-md-12">
                         <span class="h4">Subtotal</span>
-                        <span class="cart__subtotal"><span>Rs. {{cart_total}}</span</span></span>
+                        <span class="cart__subtotal"><span class="price-content">{{cart_total}}</span</span></span>
                     </div>
                     <div class="col-md-12 rte pt-1 h6 mb-5">Tax included and shipping calculated at checkout
                     </div>
@@ -67,12 +71,14 @@
                             <i class="fa fa-arrow-left hvr-icon h4">&nbsp;&nbsp;</i> Continue shopping
                         </a>
                         {{!-- <input type="submit" name="update" class="btn sm-hide btn-sec cart_submit-control" value="Update" style="font-size: 16px;"> --}}
-                        <input type="submit" name="checkout" class="btn btn--secondary cart__submit cart_submit-control" value="Check out" style="font-size: 16px;">
+                        <a href="/shipinfo" class="btn btn--secondary cart__submit cart_submit-control" style="font-size: 16px;">
+                            CHECK OUT
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     {{> freq }}
-
-{{> footera }}
+    {{> footera }}
+</body>

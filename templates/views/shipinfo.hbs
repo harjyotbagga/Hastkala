@@ -21,13 +21,15 @@
     <link rel="stylesheet" tyle="text/css" href="./assets/css/hover.css">
     <link rel="stylesheet" tyle="text/css" href="./assets/css/cart_pages.css">
 
+    <script src="assets/js/getPriceFormat.js"></script>
+
     <title>Shipping Information</title>
 </head>
 <!--background: rgb(255,255,255); background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(231,231,238,1) 41%);
 background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255,1) 51%, rgba(242,242,243,1) 55%);
 background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255,1) 51%, rgba(231,231,238,1) 55%);-->
 
-<body style=" background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255,1) 51%, rgba(242,242,243,1) 55%);">
+<body style=" background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255,1) 51%, rgba(242,242,243,1) 55%);" onload="getPriceFormat()">
     <div class="content" >
         <div class="wrap">
             <div class="main" style="background-color: #fff;">
@@ -474,6 +476,7 @@ background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255
                                 <div class="order-summary__section__content">
                                     <table class="product-table b-0">
                                         <tbody>
+                                            {{#each products}}
                                             <tr class="pt-0 pro_info">
                                                 <td>
                                                     <div class="pro-img_cart">
@@ -484,32 +487,14 @@ background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255
                                                 </td>
                                                 <th class="pro-desc_cart py-0">
                                                     <span class="pro-desc-name">
-                                                        Hand Engraved Square Spice Box With Spoon In Sheesham Wood (9
-                                                        Partitions, 80 ML)
+                                                        {{ this.product.name }}
                                                     </span>
                                                 </th>
                                                 <td class="product__price font-weight-bold">
-                                                    <span class="">Rs. 1,195.00</span>
+                                                    <span class="price-content">{{ this.net_price }}</span>
                                                 </td>
                                             </tr>
-                                            <tr class="pro_info">
-                                                <td>
-                                                    <div class="pro-img_cart">
-                                                        <div class="product-wrapper">
-                                                            <img class="img-fluid" src="assets/images/cart/cart_proimg2.jpg">
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <th class="pro-desc_cart py-0">
-                                                    <span class="pro-desc-name">
-                                                        River Rims' Studio Pottery Glazed Coffee Mugs In Ceramic (Set Of
-                                                        2)
-                                                    </span> </span>
-                                                </th>
-                                                <td class="product__price font-weight-bold">
-                                                    <span class="">Rs. 695.00</span>
-                                                </td>
-                                            </tr>
+                                            {{/each}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -542,9 +527,7 @@ background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255
                                         <tr class="price-line">
                                             <th class="font-weight-bold">Subtotal</th>
                                             <td class="font-weight-bold">
-                                                <span>
-                                                  Rs. 1,890.00
-                                                </span>
+                                                <span class="price-content">{{this.cart_total}}</span>
                                               </td>
                                         </tr>
                                         <tr class="price-line">
@@ -552,8 +535,8 @@ background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255
                                                   Shipping
                                             </th>
                                             <td class="font-weight-bold">
-                                              <span>
-                                                Rs. 99.00
+                                              <span class="price-content">
+                                                99
                                               </span>
                                             </td>
                                         </tr>
@@ -568,8 +551,8 @@ background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255
                                                 <span class=" h5">Total</span>
                                               </th>    
                                               <td class="font-weight-bold">
-                                                <span class="payment-due__price ">
-                                                  Rs. 1,989.00
+                                                <span class="payment-due__price price-content">
+                                                  1989
                                                 </span>
                                               </td>                                    
                                         </tr>

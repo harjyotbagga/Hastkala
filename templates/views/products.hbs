@@ -1,7 +1,11 @@
 {{> header}}
-<head><title>Products</title></head>
+<head>
+    <title>Products</title>
+    <script src="assets/js/getPriceFormat.js"></script>
+</head>
 
-<section class="spicehead text-center main-col main-font">
+<body onload="getPriceFormat()">
+    <section class="spicehead text-center main-col main-font">
         <h3>Spice Boxes</h3>
         <p class="sec-col">Add rich vibes of traditional flavors to your cooking space and make your spice storage organized and aesthetic with elegantly crafted wooden spice boxes, exclusively brought to you by HASTKALA.</h6>
     </section>
@@ -147,7 +151,7 @@
                             <span><i class="fa fa-star" aria-hidden="true"></i></span>
                             <span><i class="fa fa-star" aria-hidden="true"></i></span>
                             <span>7 Reviews</span></p>
-                        <p><small class="text-muted" style="text-decoration:line-through;">Rs. 2000</small>&emsp;Rs. {{this.price}}</p>
+                        <p><small class="text-muted" style="text-decoration:line-through; "><span class="price-content">2000</span></small>&emsp;<span class="price-content">{{this.price}}</span></p>
                 </div>
                 {{/each}}
             </div>
@@ -174,4 +178,5 @@
             </div>
         </div>
     </div>
-{{> footera}}
+    {{> footera}}
+</body>
