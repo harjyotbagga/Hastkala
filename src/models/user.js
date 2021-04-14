@@ -37,6 +37,24 @@ const userSchema = mongoose.Schema({
     },
     shipping: [{
         'shipping_info': {
+            'first_name': {
+                type: String,
+                required: true
+            },
+            'last_name': {
+                type: String,
+            },
+            'email': {
+                type: String,
+                required: true,
+                unique: true,
+                validate(value) {
+                    if (!validator.isEmail(value)) {
+                        throw new Error("Invalid Email Address");
+                    }
+                },
+                lowercase: true
+            },
             'address': {
                 type: String,
                 required: true
@@ -53,6 +71,10 @@ const userSchema = mongoose.Schema({
             'pin': {
                 type: Number,
                 length: 6
+            },
+            'contact': {
+                type: Number,
+                length: 10
             }
         }
     }],
@@ -66,13 +88,54 @@ const userSchema = mongoose.Schema({
             default: 1
         }
     }],
+    orders: [{
+        'cart': [{
+            'product': {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Product'
+            },
+            'qty': {
+                type: Number,
+                default: 1
+            }
+        }],
+        'shipping_cost': {
+            type: Number
+        },
+        'coupon_applied': {
+            type: Boolean,
+            default: false
+        },
+        'coupon_code': {
+            type: String,
+            default: ''
+        },
+        'net_total': {
+            type: Number
+        },
+        'shipping_address': {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            field: 'shipping'
+        },
+        'payment_type': {
+            type: String,
+            enum: ['ONLINE', 'COD'],
+            default: 'ONLINE'
+        },
+        'payment_completed': {
+            type: Boolean,
+            default: false
+        }
+    }],
     tokens: [{
         'token': {
             type: String,
             unique: true,
             required: true,
         }
-    }]
+    }],
+    
 });
 
 userSchema.methods.generateAuthToken = async function() {

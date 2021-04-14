@@ -67,13 +67,18 @@
                     <div class="col-md-12 rte pt-1 h6 mb-5">Tax included and shipping calculated at checkout
                     </div>
                     <div class="col-md-12 cart_submit-controls">
-                        <a href="/products" class="btn btn-sec cart_submit-control cart_continue sm-hide hvr-icon-back" style="font-size: 16px;">
-                            <i class="fa fa-arrow-left hvr-icon h4">&nbsp;&nbsp;</i> Continue shopping
-                        </a>
-                        {{!-- <input type="submit" name="update" class="btn sm-hide btn-sec cart_submit-control" value="Update" style="font-size: 16px;"> --}}
-                        <a href="/shipinfo" class="btn btn--secondary cart__submit cart_submit-control" style="font-size: 16px;">
+                        <form action="/checkout_cart" method="POST">
+                            <a href="/products" class="btn btn-sec cart_submit-control cart_continue sm-hide hvr-icon-back" style="font-size: 16px;">
+                                <i class="fa fa-arrow-left hvr-icon h4">&nbsp;&nbsp;</i> Continue shopping
+                            </a>
+                            {{!-- <input type="submit" name="update" class="btn sm-hide btn-sec cart_submit-control" value="Update" style="font-size: 16px;"> --}}
+                            <button class="btn btn--secondary cart__submit cart_submit-control" style="font-size: 16px;">
+                                CHECK OUT
+                            </button>
+                        </form>
+                        {{!-- <a href="/shipinfo" class="btn btn--secondary cart__submit cart_submit-control" style="font-size: 16px;">
                             CHECK OUT
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>

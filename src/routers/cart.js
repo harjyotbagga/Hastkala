@@ -56,12 +56,32 @@ router.post('/remove_from_cart', AuthMiddleware, async (req, res) => {
         });
 });
 
+router.post('/checkout_cart', AuthMiddleware, async (req, res) => {
+    ProductController.checkoutCart(req.user)
+        .then((resp) => {
+            // TODO: Empty cart also.
+            res.redirect('/shipinfo');
+        })
+        .catch((e) => {
+            console.log(chalk.red(`ERROR: ${e}`));
+            res.render('error', {
+                error_code: 500
+            });
+        })
+});
+
 router.get('/shipinfo', AuthMiddleware, async (req, res) => {
-    ProductController.getCart(req.user)
-        .then(({products, cart_total}) => {
+    ProductController.getOrder(req.user)
+        .then((resp) => {
+            if (resp.order_exists==false) {
+                // TODO: If cart is empty.
+                // TODO: End route here
+            }
+            console.log(resp);
             res.render('shipinfo', {
-                products,
-                cart_total
+                order: resp.order,
+                products: resp.products,
+                cart_total: resp.cart_total
             });
         })
         .catch((e) => {

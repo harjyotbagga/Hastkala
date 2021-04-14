@@ -72,9 +72,75 @@ const getCart = async (user) => {
     });
 }
 
+const checkoutCart = async (user) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await user.populate('cart.product').execPopulate();
+            const cart = user.cart;
+            const shipping_cost = 200;
+            var cart_total = 0
+            cart.forEach(async (item) => {
+                var net_price = item.product.price * item.qty;
+                item.net_price = net_price;
+                cart_total += net_price;
+            });
+            var net_total = cart_total + shipping_cost;
+
+            // TODO: Empty 'cart' and after creating 'order'
+            // NOTE: Shipping Address by default empty.
+            user.orders = user.orders.concat({
+                cart,
+                shipping_cost,
+                net_total,
+            });
+            await user.save();
+            resolve();
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
+
+const getOrder = async (user) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await user.populate('orders.cart.product').execPopulate();
+            const orders = user.orders;
+            var order_exists = true;
+            var order=null, products=null;
+            if (orders.length==0) {
+                order_exists = false;
+                resolve({
+                    order_exists,
+                    products,
+                    order
+                });
+            }
+            order = orders[orders.length - 1];
+            products = user.orders[orders.length - 1].cart;
+            var cart_total = 0
+            products.forEach(async (product) => {
+                var net_price = product.product.price * product.qty;
+                product.net_price = net_price;
+                cart_total += net_price;
+            });
+            resolve({
+                order_exists,
+                products,
+                order,
+                cart_total
+            });
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
 
 module.exports = {
     addToCart,
     removeFromCart,
     getCart,
+    checkoutCart,
+    getOrder,
+
 }
