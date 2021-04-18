@@ -21,7 +21,7 @@ router.get('/cart', AuthMiddleware, async (req, res) => {
 });
 
 router.post('/add_to_cart', AuthMiddleware, async (req, res) => {
-    // TODO: If BUY button is pressed.
+    // FIXME: If BUY button is pressed.
     console.log(req.body);
     ProductController.addToCart({
         'user': req.user,
