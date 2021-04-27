@@ -26,6 +26,8 @@ router.get('/shipinfo', AuthMiddleware, async(req, res) => {
         });
 });
 
+// TODO: Make right column as a partial
+
 router.post('/shipinfo', AuthMiddleware, async(req, res) => {
     // TODO: Adding coupon code route and method
     ShippingController.saveShipInfo(req.user, req.body)
@@ -40,10 +42,35 @@ router.post('/shipinfo', AuthMiddleware, async(req, res) => {
         })
 });
 
-router.get('/shipping', (req, res) => {
-    res.render('shipping', {
+router.get('/shipping', AuthMiddleware, async(req, res) => {
+    const user = req.user;
+    ShippingController.getShippingInfo(req.user)
+        .then(({ shipping_info, full_address, order }) => {
+            res.render('shipping', {
+                user,
+                full_address,
+                order
+            });
+        })
+        .catch((e) => {
+            console.log(chalk.red(`ERROR: ${e}`));
+            res.render('error', {
+                error_code: 500
+            });
+        });
+});
 
-    });
+router.post('/shipping', AuthMiddleware, async(req, res) => {
+    ShippingController.savePaymentMethod(req.user, req.body)
+        .then(() => {
+            res.redirect('/payment');
+        })
+        .catch((e) => {
+            console.log(chalk.red(`ERROR: ${e}`));
+            res.render('error', {
+                error_code: 500
+            });
+        });
 });
 
 router.get('/payment', (req, res) => {
