@@ -10,11 +10,12 @@ const productRouter = require('./routers/product');
 const cartRouter = require('./routers/cart');
 const userRouter = require('./routers/user');
 const orderRouter = require('./routers/order');
+const shippingRouter = require('./routers/shipping');
 
 const app = express();
 const PORT = process.env.PORT;
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -44,6 +45,8 @@ app.use(productRouter);
 app.use(cartRouter);
 app.use(userRouter);
 app.use(orderRouter);
+app.use(shippingRouter);
+
 app.get('*', (req, res) => {
     res.render('error', {
         error_code: 404,

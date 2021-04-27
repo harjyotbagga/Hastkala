@@ -1,46 +1,47 @@
 {{> header}}
 <section class="index-section mb-5" style="color: #5fbeaa !important; background-color: #313a43 !important;">
-        <div class="page-content">
-            <div class="mb-1 text-center">
-                <h1 class="font-weight-bold">LOGIN</h1>
-            </div>
-        </div>
+	<div class="page-content">
+		<div class="mb-1 text-center">
+			<h1 class="font-weight-bold">LOGIN</h1>
+		</div>
+	</div>
 
-    </section>
-    <section>
-        {{#if user_registered}}
-        <h5 class="col-label my-3" style="text-align: center; color:green">Account Successfully Created! Login to Enter!</h5>
-        {{/if}}
-        {{#if login_error}}
-        <h5 class="col-label my-3" style="text-align: center; color:red">Invalid Login Credentials! Please try again!</h5>
-        {{/if}}
-        {{#if not_authenticated}}
-        <h5 class="col-label my-3" style="text-align: center; color:red">Hold on! You need to login in order to perform this operation!</h5>
-        {{/if}}
-        <div class="container-fluid ">
-            <form action="/login" method="POST">
-            <div class="row">
-                <div class="col-md-4"></div>
-                    <div class="col-md-4 bg-light">
-                        <label class="form-label col-label my-3" for="email">Email Address</label>
-                        <input class="field__input border-dark" type="text" name="email" placeholder="joe.black@gmail.com" id="#email;">
-
-                        <label class="form-label col-label my-3" for="password">Password</label>
-                        <input class="field__input border-dark" type="password" name="password" placeholder="" id="#password">
-                        <div class="form-group text-center my-3">
-                            <a href="#" class="col-label my-3">Forgot your password?</a><br>
-                            <button id="#sign-in" type="submit" class="btn btn-outline-dark my-3" >
-                                <i class="fa fa-save mr-2"></i>Sign In<br>
-                            </button>
-                            <br>
-                            <a href="/register" class="col-label my-3">Create Account</a>
-                        </div>
-                    </div>
-                <div class="col-md-4"></div>
-            </div>
-            </form>
-        </div>
-    </section>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</section>
+<section>
+	{{#if user_registered}}
+	<h5 class="col-label my-3" style="text-align: center; color:green">Account Successfully Created! Login to Enter!</h5>
+	{{/if}}
+	{{#if login_error}}
+	<h5 class="col-label my-3" style="text-align: center; color:red">Invalid Login Credentials! Please try again!</h5>
+	{{/if}}
+	{{#if not_authenticated}}
+	<h5 class="col-label my-3" style="text-align: center; color:red">Hold on! You need to login in order to perform this
+		operation!</h5>
+	{{/if}}
+	<div class="container-fluid ">
+		<form action="/login" method="POST">
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4 bg-light">
+					<label class="form-label col-label my-3" for="email">Email Address</label>
+					<input class="field__input border-dark" type="text" name="email" placeholder="joe.black@gmail.com" id="#email;">
+					<label class="form-label col-label my-3" for="password">Password</label>
+					<input class="field__input border-dark" type="password" name="password" placeholder="" id="#password">
+					<div class="form-group text-center my-3">
+						<a href="#" class="col-label my-3">Forgot your password?</a><br>
+						<button id="#sign-in" type="submit" class="btn btn-outline-dark my-3">
+							<i class="fa fa-save mr-2"></i>Sign In<br>
+						</button>
+						<br>
+						<a href="/register" class="col-label my-3">Create Account</a>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		</form>
+	</div>
+</section>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
 
 {{> footer}}
