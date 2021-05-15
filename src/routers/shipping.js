@@ -73,10 +73,22 @@ router.post('/shipping', AuthMiddleware, async(req, res) => {
         });
 });
 
-router.get('/payment', (req, res) => {
-    res.render('payment', {
-
-    });
+router.get('/payment', AuthMiddleware, (req, res) => {
+    const user = req.user;
+    ShippingController.getShippingInfo(req.user)
+        .then(({ shipping_info, full_address, order }) => {
+            res.render('payment', {
+                user,
+                full_address,
+                order
+            });
+        })
+        .catch((e) => {
+            console.log(chalk.red(`ERROR: ${e}`));
+            res.render('error', {
+                error_code: 500
+            });
+        });
 });
 
 module.exports = router;

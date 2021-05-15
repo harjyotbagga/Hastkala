@@ -55,21 +55,17 @@ background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255
                                             <tbody class="content-box__row ">
                                                 <tr>
                                                     <td class="review_label sm-hide pt-0">Contact</td>
-                                                    <td class="review_content pt-0">princymuskan25@gmail.com</td>
+                                                    <td class="review_content pt-0">{{user.email}}</td>
                                                     <td class="review_link pt-0"><a href="/shipinfo" class="link">Change</a> </td>
                                                 </tr>
                                                 <tr style="border-top:1px solid #d9d9d9;">
                                                     <td class="review_label sm-hide">Ship to</td>
-                                                    <td class="review_content">Ravindra Jain, ajay enclave colony,284002 Jhansi UP, India</td>
+                                                    <td class="review_content">{{full_address}}</td>
                                                     <td class="review_link"><a href="/shipinfo" class="link">Change</a> </td>
                                                 </tr>
                                                 <tr style="border-top:1px solid #d9d9d9;">
                                                     <td class="review_label sm-hide pb-0">Method</td>
-                                                    <td class="review_content pb-0">Online 
-                                                        <span style="font-weight: 500;color: #000000;" >
-                                                            .Free
-                                                        </span>
-                                                    </td>
+                                                    <td class="review_content pb-0">{{order.payment_type}}</td>
                                                     <td class="review_link pb-0"></td>
                                                 </tr>
                                             </tbody>

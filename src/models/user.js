@@ -118,6 +118,11 @@ const userSchema = mongoose.Schema({
             ref: 'User',
             field: 'shipping'
         },
+        'billing_address': {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            field: 'shipping'
+        },
         'payment_type': {
             type: String,
             enum: ['ONLINE', 'COD'],
@@ -135,21 +140,21 @@ const userSchema = mongoose.Schema({
             required: true,
         }
     }],
-    
+
 });
 
 userSchema.methods.generateAuthToken = async function() {
     const user = this;
-    const token = jwt.sign({_id: user._id.toString()}, JSON_SECRET_TOKEN);
+    const token = jwt.sign({ _id: user._id.toString() }, JSON_SECRET_TOKEN);
     // console.log(user);
     // console.log(user.tokens);
     // console.log(token)
-    user.tokens = user.tokens.concat({token});
+    user.tokens = user.tokens.concat({ token });
     await user.save();
     return token;
 }
 
-userSchema.methods.toJSON = function () {
+userSchema.methods.toJSON = function() {
     const user = this;
     const userObject = user.toObject();
     delete userObject.password;
@@ -157,8 +162,8 @@ userSchema.methods.toJSON = function () {
     return userObject;
 }
 
-userSchema.statics.findByCredentials = async (email, password) => {
-    const user = await User.findOne({ email }); 
+userSchema.statics.findByCredentials = async(email, password) => {
+    const user = await User.findOne({ email });
     if (!user) {
         throw new Error('Unable to login.');
     }
@@ -169,14 +174,14 @@ userSchema.statics.findByCredentials = async (email, password) => {
     return user;
 }
 
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function(next) {
     const user = this;
     if (!user.isModified('password')) return next();
     user.password = await bcrypt.hash(user.password, 8);
     next();
 });
 
-userSchema.pre('remove', async function (next) {
+userSchema.pre('remove', async function(next) {
     const user = this;
     // Cascading
     next();
