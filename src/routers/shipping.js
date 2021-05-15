@@ -7,17 +7,23 @@ const router = new express.Router();
 
 router.get('/shipinfo', AuthMiddleware, async(req, res) => {
     ProductController.getOrder(req.user)
-        .then((resp) => {
-            if (resp.order_exists == false) {
+        .then(({
+            order_exists,
+            products,
+            order,
+            cart_summary
+        }) => {
+            // console.log(cart_summary)
+            if (order_exists == false) {
                 // TODO: If cart is empty.
                 // TODO: End route here
             }
             res.render('shipinfo', {
-                order: resp.order,
-                products: resp.products,
-                cart_total: resp.cart_total,
-                cart_info: resp.order.cart,
-                order_info: resp.order
+                order: order,
+                products: products,
+                cart_info: order.cart,
+                order_info: order,
+                cart_summary
             });
         })
         .catch((e) => {
@@ -45,11 +51,12 @@ router.post('/shipinfo', AuthMiddleware, async(req, res) => {
 router.get('/shipping', AuthMiddleware, async(req, res) => {
     const user = req.user;
     ShippingController.getShippingInfo(req.user)
-        .then(({ shipping_info, full_address, order }) => {
+        .then(({ shipping_info, full_address, order, cart_summary }) => {
             res.render('shipping', {
                 user,
                 full_address,
-                order
+                order,
+                cart_summary
             });
         })
         .catch((e) => {

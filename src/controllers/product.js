@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const User = require('../models/user');
 const Product = require('../models/product');
+const { resolve } = require('path');
 
 const addToCart = async(query) => {
     return new Promise(async(resolve, reject) => {
@@ -119,17 +120,36 @@ const getOrder = async(user) => {
             }
             order = orders[orders.length - 1];
             products = user.orders[orders.length - 1].cart;
-            var cart_total = 0
+            var cart_subtotal = 0
             products.forEach(async(product) => {
                 var net_price = product.product.price * product.qty;
                 product.net_price = net_price;
-                cart_total += net_price;
+                cart_subtotal += net_price;
             });
+            const cart_summary = await getCartSummary(order);
             resolve({
                 order_exists,
                 products,
                 order,
-                cart_total
+                cart_subtotal,
+                cart_summary
+            });
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
+
+const getCartSummary = async(order) => {
+    return new Promise(async(resolve, reject) => {
+        try {
+            const cart = [...order.cart];
+            resolve({
+                coupon_applied: order.coupon_applied,
+                shipping_cost: order.shipping_cost,
+                cart_subtotal: order.net_total,
+                cart_total: (order.shipping_cost + order.net_total),
+                cart: cart
             });
         } catch (e) {
             reject(e);
@@ -143,5 +163,6 @@ module.exports = {
     getCart,
     checkoutCart,
     getOrder,
+    getCartSummary,
 
 }
