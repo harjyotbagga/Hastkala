@@ -76,8 +76,7 @@
 											<tbody class="content-box__row ">
 												<tr>
 													<td class="review_label pt-0">
-														<input class="input-radio" type="radio" name="cod" value="false" onclick="Check(this)"
-															required>
+														<input class="input-radio" type="radio" name="cod" value="false" onclick="Check(this)" required="true">
 													</td>
 													<td class="review_content pt-0">Online</td>
 													<td class="ship-price pt-0">
@@ -136,118 +135,7 @@
 				</main>
 
 			</div>
-			<aside class="sidebar">
-				<div class="sidebar_content">
-					<div class="order">
-						<div class="order-summary__sections" style="color: #323232;">
-							<div class="order-summary__section product-list">
-								<div class="order-summary__section__content">
-									<table class="product-table b-0">
-										<tbody>
-											<tr class="pt-0 pro_info">
-												<td>
-													<div class="pro-img_cart">
-														<div class="product-wrapper">
-															<img class="img-fluid" src="assets/images/products/cart_proimg1.jpg">
-														</div>
-													</div>
-												</td>
-												<th class="pro-desc_cart py-0">
-													<span class="pro-desc-name">
-														Hand Engraved Square Spice Box With Spoon In Sheesham Wood (9
-														Partitions, 80 ML)
-													</span>
-												</th>
-												<td class="product__price font-weight-bold">
-													<span class="">Rs. 1,195.00</span>
-												</td>
-											</tr>
-											<tr class="pro_info">
-												<td>
-													<div class="pro-img_cart">
-														<div class="product-wrapper">
-															<img class="img-fluid" src="assets/images/products/cart_proimg2.jpg">
-														</div>
-													</div>
-												</td>
-												<th class="pro-desc_cart py-0">
-													<span class="pro-desc-name">
-														River Rims' Studio Pottery Glazed Coffee Mugs In Ceramic (Set Of
-														2)
-													</span> </span>
-												</th>
-												<td class="product__price font-weight-bold">
-													<span class="">Rs. 695.00</span>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="order-summary__section discount">
-								<form action="/" method="POST">
-									<div class="field">
-										<div style="display:flex">
-											<div class="field__input-wrapper">
-												<label class="field__label" for="reduction_code">Gift card or discount
-													code</label>
-												<input placeholder="Gift card or discount code" class="field__input promo" id="reduction_code"
-													autocomplete="off" aria-required="true" size="30" type="text">
-											</div>
-											<button name="button" type="submit" class="field__input-btn btn btn--disabled" aria-busy="false"
-												disabled="disabled">
-												<span class="btn__content"> Apply</span>
-											</button>
-										</div>
-									</div>
-
-								</form>
-
-							</div>
-							<div class="order-summary__section prices-line">
-								<table>
-									<tbody class="prices-line">
-										<tr class="price-line">
-											<th class="font-weight-bold">Subtotal</th>
-											<td class="font-weight-bold">
-												<span>
-													Rs. 1,890.00
-												</span>
-											</td>
-										</tr>
-										<tr class="price-line">
-											<th class="font-weight-bold">
-												Shipping
-											</th>
-											<td class="font-weight-bold">
-												<span>
-													Rs. 99.00
-												</span>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="order-summary__section">
-								<table>
-									<tbody>
-										<tr class="price-line">
-											<th class="font-weight-bold">
-												<span class=" h5">Total</span>
-											</th>
-											<td class="font-weight-bold">
-												<span class="payment-due__price ">
-													Rs. 1,989.00
-												</span>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</aside>
+			{{>discount_code_sidebar }}
 		</div>
 	</div>
 

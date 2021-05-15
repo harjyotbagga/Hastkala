@@ -15,7 +15,9 @@ router.get('/shipinfo', AuthMiddleware, async(req, res) => {
             res.render('shipinfo', {
                 order: resp.order,
                 products: resp.products,
-                cart_total: resp.cart_total
+                cart_total: resp.cart_total,
+                cart_info: resp.order.cart,
+                order_info: resp.order
             });
         })
         .catch((e) => {
@@ -25,8 +27,6 @@ router.get('/shipinfo', AuthMiddleware, async(req, res) => {
             });
         });
 });
-
-// TODO: Make right column as a partial
 
 router.post('/shipinfo', AuthMiddleware, async(req, res) => {
     // TODO: Adding coupon code route and method
@@ -89,6 +89,13 @@ router.get('/payment', AuthMiddleware, (req, res) => {
                 error_code: 500
             });
         });
+});
+
+router.post('/payment', AuthMiddleware, (req, res) => {
+    const user = req.user;
+    // TODO: Complete Order functionality.
+    console.log(req.body);
+    res.redirect('/products');
 });
 
 module.exports = router;
