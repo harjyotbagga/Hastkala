@@ -1,75 +1,53 @@
 {{> header}}
-<section class="index-section mb-5" style="color: #5fbeaa !important; background-color: #313a43 !important;">
-	<div class="page-content">
-		<div class="mb-1 text-center">
-			<h1 class="font-weight-bold">YOUR ORDERS</h1>
-		</div>
-	</div>
 
-</section>
-<section>
-	<div class="container">
-		<div class="row mb-5 overflow-auto">
-			<div class="col-lg-8 col-xl-9">
-				<table class="table ">
-					<thead style="color: #5fbeaa !important; background-color: #313a43 !important;">
-						<tr>
-							<th>ORDER#</th>
-							<th>DATE</th>
-							<th>TOTAL</th>
-							<th>STATUS</th>
-							<th>ACTION</th>
+<head>
+	<title>Orders</title>
+	<script src="assets/js/getPriceFormat.js"></script>
+</head>
 
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td scope="row">#1701</td>
-							<td>02/12/2020</td>
-							<td>Rs.3000</td>
-							<td>
-								<p class="bg-info w-75 pl-2 pr-2 pt-1 pb-1">BEING PREPARED</p>
-							</td>
-							<td><a href="./orderno_1701.php" class="btn btn-outline-dark">VIEW</a></td>
 
-						</tr>
-						<tr>
-							<td scope="row">#101</td>
-							<td>02/01/2021</td>
-							<td>Rs.1780</td>
-							<td>
-								<p class="bg-warning w-75 pl-2 pr-2 pt-1 pb-1">ACTION NEEDED</p>
-							</td>
-							<td><a href="#" class="btn btn-outline-dark">VIEW</a></td>
-
-						</tr>
-						<tr>
-							<td scope="row">#11</td>
-							<td>21/12/2020</td>
-							<td>Rs.580</td>
-							<td>
-								<p class="bg-success w-75 pl-2 pr-2 pt-1 pb-1">RECIEVED</p>
-							</td>
-							<td><a href="#" class="btn btn-outline-dark">VIEW</a></td>
-
-						</tr>
-						<tr>
-							<td scope="row">#2002</td>
-							<td>02/03/2021</td>
-							<td>Rs.2890</td>
-							<td>
-								<p class="bg-danger w-75 pl-2 pr-2 pt-1 pb-1">CANCELLED</p>
-							</td>
-							<td><a href="#" class="btn btn-outline-dark">VIEW</a></td>
-
-						</tr>
-					</tbody>
-				</table>
+<body onload="getPriceFormat()">
+	<section class="index-section mb-5" style="color: #5fbeaa !important; background-color: #313a43 !important;">
+		<div class="page-content">
+			<div class="mb-1 text-center">
+				<h1 class="font-weight-bold">YOUR ORDERS</h1>
 			</div>
-			{{> user_sidepanel}}
-	</div>
-</section>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-	crossorigin="anonymous"></script>
+		</div>
 
-{{> footer}}
+	</section>
+	<section>
+		<div class="container">
+			<div class="row mb-5 overflow-auto">
+				<div class="col-lg-8 col-xl-9">
+					<table class="table ">
+						<thead style="color: #5fbeaa !important; background-color: #313a43 !important;">
+							<tr>
+								<th>ORDER#</th>
+								<th>TOTAL</th>
+								<th>SHIPPING ADDRESS</th>
+								<th>PAYMENT TYPE</th>
+								<th>ORDER STATUS</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							{{#each order_summary}}
+							<tr>
+								<td scope="row"><a href="/completed?id={{this.id}}">#{{ this.id}}</a></td>
+								<td class="price-content">{{ this.total }}</td>
+								<td>{{ this.shipping }}</td>
+								<td>{{ this.payment }}</td>
+								<td>{{ this.status }}</td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+				{{> user_sidepanel}}
+			</div>
+	</section>
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+		crossorigin="anonymous"></script>
+
+	{{> footer}}
+</body>

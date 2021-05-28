@@ -1,7 +1,6 @@
 const chalk = require('chalk');
 const User = require('../models/user');
 const Product = require('../models/product');
-const { resolve } = require('path');
 
 const addToCart = async(query) => {
     return new Promise(async(resolve, reject) => {

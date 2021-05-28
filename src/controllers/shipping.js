@@ -2,7 +2,6 @@ const chalk = require('chalk');
 const User = require('../models/user');
 const Product = require('../models/product');
 const ProductController = require('./product');
-const { resolve } = require('path');
 
 const saveShipInfo = async(user, info) => {
     return new Promise(async(resolve, reject) => {
@@ -52,6 +51,7 @@ const savePaymentMethod = async(user, paymentMethod) => {
 }
 
 const completeOrder = async(user, onlinePaymentMethod) => {
+    // TODO: Billing address
     return new Promise(async(resolve, reject) => {
         try {
             var l = user.orders.length;

@@ -71,6 +71,7 @@ router.post('/shipping', AuthMiddleware, async(req, res) => {
     ShippingController.savePaymentMethod(req.user, req.body)
         .then(() => {
             // TODO: If COD Complete Order
+            // TODO: Shipping & Billing Address
             res.redirect('/payment');
         })
         .catch((e) => {

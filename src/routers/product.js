@@ -2,7 +2,6 @@ const express = require('express');
 const router = new express.Router();
 const Product = require('../models/product');
 const AuthMiddleware = require('../middleware/auth');
-const ProductController = require('../controllers/product');
 const chalk = require('chalk');
 
 router.get('/products', async(req, res) => {
@@ -34,7 +33,7 @@ router.get('/product', async(req, res) => {
     } catch (e) {
         console.log(chalk.red(`ERROR: ${e}`));
         res.render('error', {
-            error_code: 500
+            error_code: 404
         });
     }
 });
