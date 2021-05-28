@@ -56,17 +56,21 @@ router.post('/remove_from_cart', AuthMiddleware, async(req, res) => {
 });
 
 router.post('/checkout_cart', AuthMiddleware, async(req, res) => {
-    ProductController.checkoutCart(req.user)
-        .then((resp) => {
-            // TODO: Empty cart also.
-            res.redirect('/shipinfo');
-        })
-        .catch((e) => {
-            console.log(chalk.red(`ERROR: ${e}`));
-            res.render('error', {
-                error_code: 500
+    if (req.user.cart.length == 0) {
+        res.redirect('/products');
+    } else {
+        ProductController.checkoutCart(req.user)
+            .then((resp) => {
+                // TODO: Empty cart also.
+                res.redirect('/shipinfo');
+            })
+            .catch((e) => {
+                console.log(chalk.red(`ERROR: ${e}`));
+                res.render('error', {
+                    error_code: 500
+                });
             });
-        })
+    }
 });
 
 module.exports = router;

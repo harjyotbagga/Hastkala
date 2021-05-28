@@ -61,7 +61,8 @@ background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255
 												<tr style="border-top:1px solid #d9d9d9;">
 													<td class="review_label sm-hide">Ship to</td>
 													<td class="review_content">{{full_address}}</td>
-													<td class="review_link"><a href="/shipinfo" class="link">Change</a> </td>
+													<td class="review_link"><a href="/shipinfo" class="link">Change</a>
+													</td>
 												</tr>
 												<tr style="border-top:1px solid #d9d9d9;">
 													<td class="review_label sm-hide pb-0">Method</td>
@@ -83,26 +84,28 @@ background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255
 										<div class="content-box" style="padding: 0%;">
 											<div class="content-box__row radio-wrapper">
 												<div class="radio__input">
-													<input class="input-radio" type="radio" checked="checked" name="cars" value="2">
+													<input class="input-radio" type="radio" checked="checked" name="payment" value="paypal">
 												</div>
 												<div class="radio__label">
 													<img class="payment-logo" alt="paypal" src="./assets/images/payment/paypal.png">
 												</div>
 											</div>
-											<div id="Cars2" class="content-box__row radio-wrapper payment-information"
+											<div id="Payment-paypal" class="content-box__row radio-wrapper payment-information"
 												style="background-color: #fafafa;">
 												<div class="pay-padd">
 													<i class="icon--offsite"></i>
-													<p class="text-center">After clicking “Complete order”, you will be redirected to PayPal to
+													<p class="text-center">After clicking “Complete order”, you will be
+														redirected to PayPal to
 														complete your purchase securely.</p>
 												</div>
 											</div>
 											<div class="content-box__row radio-wrapper">
 												<div class="radio__input">
-													<input class="input-radio" type="radio" name="cars" value="3">
+													<input class="input-radio" type="radio" name="payment" value="razorpay">
 												</div>
 												<div class="radio__label">
-													<label class="radio-label__primary"> Razorpay (Cards, UPI, NetBanking, Wallets)</label>
+													<label class="radio-label__primary"> Razorpay (Cards, UPI,
+														NetBanking, Wallets)</label>
 													<div class="extra-info">
 														<ul>
 															<li class="payment-icon payment-icon--visa"></li>
@@ -113,17 +116,19 @@ background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255
 													</div>
 												</div>
 											</div>
-											<div id="Cars3" class="content-box__row radio-wrapper payment-information"
+											<div id="Payment-razorpay" class="content-box__row radio-wrapper payment-information"
 												style="background-color: #fafafa; display:none;">
 												<div class="pay-padd">
 													<i class="icon--offsite"></i>
-													<p class="text-center">After clicking “Complete order”, you will be redirected to Razorpay
-														(Cards, UPI, NetBanking, Wallets) to complete your purchase securely.</p>
+													<p class="text-center">After clicking “Complete order”, you will be
+														redirected to Razorpay
+														(Cards, UPI, NetBanking, Wallets) to complete your purchase
+														securely.</p>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="section">
+									{{!-- <div class="section">
 										<div class="section_header">
 											<h5> Billing address</h5>
 											<p style=" color: #70767a;font-size: 0.9em;">
@@ -144,15 +149,18 @@ background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255
 													<input class="input-radio" type="radio" name="tab" value="igotnone" onclick="show2();">
 												</div>
 												<div class="radio__label">
-													<label class="radio-label__primary">Use a different billing address</label>
+													<label class="radio-label__primary">Use a different billing
+														address</label>
 												</div>
 											</div>
 											{{> billing_address}}
 										</div>
 
-									</div>
-									<div class="mt-3 text-right sm-center"> 
-										<button class="btn btn-primary btn-lg" type="submit" style="font-size: 16px;padding-top: 18px; padding-bottom: 18px;" data-toggle="modal" data-target="#modal-success">
+									</div> --}}
+									<div class="mt-3 text-right sm-center">
+										<button class="btn btn-primary btn-lg" type="submit"
+											style="font-size: 16px;padding-top: 18px; padding-bottom: 18px;" data-toggle="modal"
+											data-target="#modal-success">
 											Complete Order
 										</button>
 										<a class="footer__previous-link pt-3 sm-hide" href="/shipping" style=" text-decoration: none;">
@@ -202,11 +210,11 @@ background: rgb(255,255,255);background: linear-gradient(90deg, rgba(255,255,255
 		crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function () {
-			$("input[name$='cars']").click(function () {
+			$("input[name$='payment']").click(function () {
 				var test = $(this).val();
 
 				$("div.payment-information").hide();
-				$("#Cars" + test).show();
+				$("#Payment-" + test).show();
 			});
 		});
 		function show1() {

@@ -70,6 +70,7 @@ router.get('/shipping', AuthMiddleware, async(req, res) => {
 router.post('/shipping', AuthMiddleware, async(req, res) => {
     ShippingController.savePaymentMethod(req.user, req.body)
         .then(() => {
+            // TODO: If COD Complete Order
             res.redirect('/payment');
         })
         .catch((e) => {
@@ -100,9 +101,16 @@ router.get('/payment', AuthMiddleware, (req, res) => {
 
 router.post('/payment', AuthMiddleware, (req, res) => {
     const user = req.user;
-    // TODO: Complete Order functionality.
-    console.log(req.body);
-    res.redirect('/products');
+    ShippingController.completeOrder(req.user, req.body.payment)
+        .then(() => {
+            res.redirect('/products');
+        })
+        .catch((e) => {
+            console.log(chalk.red(`ERROR: ${e}`));
+            res.render('error', {
+                error_code: 500
+            });
+        });
 });
 
 module.exports = router;
