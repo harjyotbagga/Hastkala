@@ -1,4 +1,4 @@
-{{> header}}
+{{> header name=name email=email}}
 
 <head>
 	<title>ORDER: #{{orderID}}</title>
@@ -10,7 +10,7 @@
 		<div class="page-content">
 			<div class="mb-1 text-center">
 				<h1 class="font-weight-bold">ORDER: #{{orderID}}</h1>
-				<p>Order #1701 is currently {{status}}.</p>
+				<p>Order #{{orderID}} is currently {{status}}.</p>
 			</div>
 		</div>
 
@@ -62,16 +62,18 @@
 
 				</div>
 				<div class="col-md-4 bg-light p-3 mx-3">
-					<strong> INVOICE ADDRESS</strong>
+					{{!-- <strong> INVOICE ADDRESS</strong>
 					<p> John Brown <br> 13/25 New Avenue <br> New Heaven<br> 45Y 73J
 						<Br> England
 						<br> Great Britain
-					</p>
+					</p> --}}
 
 					<strong> SHIPPING ADDRESS</strong>
-					<p> John Brown <br> 13/25 New Avenue <br> New Heaven<br> 45Y 73J
-						<Br> England
-						<br> Great Britain
+					<p> {{user.first_name}} {{user.last_name}}
+						<br> {{shipping.shipping_info.address}}
+						<br> {{shipping.shipping_info.city}}
+						<br> {{shipping.shipping_info.state}}
+						<br> India
 					</p>
 				</div>
 				<div class="col-md-4"></div>

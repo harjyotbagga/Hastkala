@@ -31,21 +31,24 @@
 				</div>
 
 				{{#ifInverted cart_summary.coupon_applied}}
-					<div class="order-summary__section discount">
-						<form action="/" method="POST">
-							<div class="field">
-								<div style="display:flex">
-									<div class="field__input-wrapper">
-										<label class="field__label" for="reduction_code">Gift card or discount code</label>
-										<input placeholder="Gift card or discount code" class="field__input promo" id="reduction_code" autocomplete="off" aria-required="true" size="30" type="text">
-									</div>
-									<button name="button" type="submit" class="field__input-btn btn btn--disabled" aria-busy="false" disabled="disabled">
-										<span class="btn__content"> Apply</span>
-									</button>
+				<div class="order-summary__section discount">
+					<form action="/" method="POST">
+						<div class="field">
+							<div style="display:flex">
+								<div class="field__input-wrapper">
+									<label class="field__label" for="reduction_code">Gift card or discount code</label>
+									<input placeholder="Gift card or discount code" class="field__input promo"
+										id="reduction_code" autocomplete="off" aria-required="true" size="30"
+										type="text">
 								</div>
+								<button name="button" type="submit" class="field__input-btn btn btn--disabled"
+									aria-busy="false" disabled="disabled">
+									<span class="btn__content"> Apply</span>
+								</button>
 							</div>
-						</form>
-					</div>
+						</div>
+					</form>
+				</div>
 				{{/ifInverted}}
 
 				<div class="order-summary__section prices-line">

@@ -24,17 +24,22 @@ router.get('/completed', AuthMiddleware, (req, res) => {
         .then((order) => {
             var status = order.payment_completed ? 'COMPLETED' : 'INCOMPLETE';
             var order_subtotal = order.net_total - order.shipping_cost;
+            var user = req.user;
+            var shipping = user.shipping[0];
+            console.log(shipping);
             res.render('order_completed', {
                 orderID: req.query.id,
                 status,
                 cart: order.cart,
                 // TODO: Shipping & Billing Address
-                // TODO: Add addresses on webpages
+                // TODO: Add addresses on webpages [orders & completed]
                 shipping_address: order.shipping_address,
                 billing_address: order.billing_address,
                 order_subtotal,
                 order_shipping: order.shipping_cost,
-                order_total: order.net_total
+                order_total: order.net_total,
+                user,
+                shipping
             });
         })
         .catch((e) => {
