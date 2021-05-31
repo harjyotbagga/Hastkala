@@ -1,10 +1,10 @@
-
-@media (max-width: 576px){
+@media (max-width: 576px) {
     .footer-padd {
         padding-left: 1rem !important;
         padding-bottom: 1em;
     }
 }
+
 .footer {
     margin-top: 50px;
     font-size: 16px;
@@ -18,11 +18,10 @@
     text-decoration: none !important;
     color: #777a7c
 }
-.site-footer{
-   
+
+.site-footer {
     background-color: #f1e9e9;
 }
-
 
 .description {
     font-size: 12px
@@ -35,7 +34,7 @@
 
 .fa-instagram {
     color: #e4405f;
-    font-size:20px;
+    font-size: 20px;
 }
 
 .fa-youtube {
@@ -51,21 +50,24 @@
 .footer-copyright p {
     margin-top: 10px
 }
+
 .shadow-sm {
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)!important;
 }
 
-.logo-footer{
+.logo-footer {
     height: 70px;
     width: 180px;
 }
+
 .footer-widget-heading h3 {
     color: #3d4246;
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 40px;
     position: relative;
-  }
+}
+
 .footer-widget-heading h3::before {
     content: "";
     position: absolute;
@@ -73,33 +75,40 @@
     bottom: -15px;
     height: 2px;
     width: 50px;
-    background: #5ca1a1;
+    background: #3f3143;
 }
-.footer-padd{
-    padding-left:2rem;
+
+.footer-padd {
+    padding-left: 2rem;
     padding-right: 2rem;
     padding-bottom: 1em;
 }
-.copyright-area{
+
+.copyright-area {
     background: #202020;
     padding: 30px 0 15px 0
-  }
-  .copyright-text p {
+}
+
+.copyright-text p {
     margin: 0;
     font-size: 16px;
     color: #939393;
-  }
-  .copyright-text p a{
-    color:#5ca1a1;
-  }
-  .footer-menu li {
+}
+
+.copyright-text p a {
+    color: #5ca1a1;
+}
+
+.footer-menu li {
     display: inline-block;
     margin-left: 20px;
-  }
-  .footer-menu li:hover a{
-    color:#5ca1a1;
-  }
-  .footer-menu li a {
+}
+
+.footer-menu li:hover a {
+    color: #5ca1a1;
+}
+
+.footer-menu li a {
     font-size: 16px;
     color: #939393;
-  }
+}

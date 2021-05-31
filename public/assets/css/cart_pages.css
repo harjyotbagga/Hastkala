@@ -767,12 +767,12 @@ body,
 
 .block-header {
     padding: 1.2rem 1.5rem;
-    background-color: #313a43;
+    background-color: #3f3143;
 }
 
 .block-header h5 {
     font-weight: 600;
-    color: #5fbeaa;
+    color: #d29851;
 }
 
 .block-body {
@@ -780,12 +780,12 @@ body,
 }
 
 .form-group .field__input {
-    border: 1px solid #313a43;
+    border: 1px solid #3f3143;
 }
 
 .col-label {
     font-style: bold;
-    color: #313a43;
+    color: #3f3143;
     font-weight: 500;
 }
 
@@ -798,7 +798,7 @@ body,
     right: 39px;
     z-index: 98;
     padding: 21px;
-    background-color: #436076;
+    background-color: #3f3143;
 }
 
 .js .cd-top--fade-out {
@@ -924,7 +924,7 @@ body,
     border-radius: 50%;
     width: 35px;
     height: 25px;
-    background-color: #313a43;
+    background-color: #3f3143;
     color: white;
 }
 
