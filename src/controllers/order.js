@@ -6,7 +6,6 @@ const getAllOrders = async(user) => {
     return new Promise(async(resolve, reject) => {
         try {
             order_summary = [];
-            console.log(user.orders.length);
             user.orders.forEach(order => {
                 var summary = {
                     id: order._id,
@@ -28,7 +27,6 @@ const getSpecificOrder = async(user, orderID) => {
     return new Promise(async(resolve, reject) => {
         try {
             await user.populate('orders.cart.product').execPopulate();
-            console.log(orderID);
             orders = user.orders;
             var order = undefined;
             orders.forEach(user_order => {

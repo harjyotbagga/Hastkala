@@ -39,7 +39,6 @@ router.get('/product', async(req, res) => {
 });
 
 router.post('/product', AuthMiddleware, async(req, res) => {
-    console.log(req.body);
     product = await Product.findById(req.body.product_id);
     if (!product) {
         res.render('error', {

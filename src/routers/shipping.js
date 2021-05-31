@@ -13,7 +13,6 @@ router.get('/shipinfo', AuthMiddleware, async(req, res) => {
             order,
             cart_summary
         }) => {
-            // console.log(cart_summary)
             if (order_exists == false) {
                 // TODO: If cart is empty.
                 // TODO: End route here

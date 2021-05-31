@@ -2,9 +2,8 @@ const chalk = require('chalk');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-const login = async (login_creds) => {
-    return new Promise(async (resolve, reject) => {
-        // console.log(login_creds);
+const login = async(login_creds) => {
+    return new Promise(async(resolve, reject) => {
         try {
             const user = await User.findByCredentials(login_creds.email, login_creds.password);
             const token = await user.generateAuthToken();
@@ -17,11 +16,11 @@ const login = async (login_creds) => {
     });
 }
 
-const logout = async (auth_token) => {
-    return new Promise(async (resolve, reject) => {
+const logout = async(auth_token) => {
+    return new Promise(async(resolve, reject) => {
         try {
             const decoded_token = jwt.verify(auth_token, process.env.JSON_SECRET_TOKEN);
-            const user = await User.findOne({_id: decoded_token._id, 'tokens.token': auth_token});
+            const user = await User.findOne({ _id: decoded_token._id, 'tokens.token': auth_token });
             user.tokens = user.tokens.filter((token) => {
                 return token.token !== auth_token;
             });
@@ -35,12 +34,10 @@ const logout = async (auth_token) => {
     });
 }
 
-const createUser = async (user_details) => {
-    return new Promise(async (resolve, reject) => {
-        // console.log(user_details);
+const createUser = async(user_details) => {
+    return new Promise(async(resolve, reject) => {
         try {
             const user = User(user_details);
-            console.log(user);
             await user.save();
             // As redirecting to user login, and not logging in user yet!!
             token = await user.generateAuthToken();
@@ -50,14 +47,14 @@ const createUser = async (user_details) => {
             console.log(chalk.red(`ERROR: ${e}`));
             reject(e);
         }
-    }); 
+    });
 }
 
-const isLoggedIn = async (cookies) => {
+const isLoggedIn = async(cookies) => {
     if (cookies.auth_token) {
         const token = cookies.auth_token;
         const decoded_token = jwt.verify(token, process.env.JSON_SECRET_TOKEN);
-        const user = await User.findOne({_id: decoded_token._id, 'tokens.token': token});
+        const user = await User.findOne({ _id: decoded_token._id, 'tokens.token': token });
         if (user) {
             return true;
         } else {

@@ -26,7 +26,6 @@ router.get('/completed', AuthMiddleware, (req, res) => {
             var order_subtotal = order.net_total - order.shipping_cost;
             var user = req.user;
             var shipping = user.shipping[0];
-            console.log(shipping);
             res.render('order_completed', {
                 orderID: req.query.id,
                 status,

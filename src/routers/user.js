@@ -4,7 +4,6 @@ const AuthMiddleware = require('../middleware/auth');
 const router = new express.Router();
 
 router.get('/profile', AuthMiddleware, (req, res) => {
-    // console.log(req.user);
     var user = req.user;
     var name = user.first_name + user.last_name;
     var email = user.email;
