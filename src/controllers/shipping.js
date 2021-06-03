@@ -65,11 +65,26 @@ const completeOrder = async(user, onlinePaymentMethod) => {
     });
 }
 
+const codAndCompleteOrder = async(user) => {
+    // TODO: Billing address
+    return new Promise(async(resolve, reject) => {
+        try {
+            var l = user.orders.length;
+            user.orders[l - 1].payment_completed = true;
+            user.orders[l - 1].payment_type = 'COD';
+            user.cart = undefined;
+            await user.save();
+            resolve();
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
 
 module.exports = {
     saveShipInfo,
     getShippingInfo,
     savePaymentMethod,
     completeOrder,
-
+    codAndCompleteOrder
 }

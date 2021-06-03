@@ -67,11 +67,23 @@ router.get('/shipping', AuthMiddleware, async(req, res) => {
 });
 
 router.post('/shipping', AuthMiddleware, async(req, res) => {
+    // TODO: Shipping & Billing Address
     ShippingController.savePaymentMethod(req.user, req.body)
         .then(() => {
-            // TODO: If COD Complete Order
-            // TODO: Shipping & Billing Address
-            res.redirect('/payment');
+            if (req.body.cod == 'true') {
+                ShippingController.codAndCompleteOrder(req.user)
+                    .then(() => {
+                        res.redirect('/products');
+                    })
+                    .catch((e) => {
+                        console.log(chalk.red(`ERROR: ${e}`));
+                        res.render('error', {
+                            error_code: 500
+                        });
+                    });
+            } else {
+                res.redirect('/payment');
+            }
         })
         .catch((e) => {
             console.log(chalk.red(`ERROR: ${e}`));
