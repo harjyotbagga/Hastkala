@@ -37,10 +37,11 @@ const logout = async(auth_token) => {
 const createUser = async(user_details) => {
     return new Promise(async(resolve, reject) => {
         try {
+            console.log(user_details);
             const user = User(user_details);
+            token = await user.generateAuthToken();
             await user.save();
             // As redirecting to user login, and not logging in user yet!!
-            token = await user.generateAuthToken();
             console.log(chalk.green('User Created!'));
             resolve('User Added');
         } catch (e) {

@@ -39,15 +39,12 @@ const userSchema = mongoose.Schema({
         'shipping_info': {
             'first_name': {
                 type: String,
-                required: true
             },
             'last_name': {
                 type: String,
             },
             'email': {
                 type: String,
-                required: true,
-                unique: true,
                 validate(value) {
                     if (!validator.isEmail(value)) {
                         throw new Error("Invalid Email Address");
@@ -57,7 +54,6 @@ const userSchema = mongoose.Schema({
             },
             'address': {
                 type: String,
-                required: true
             },
             'city': {
                 type: String

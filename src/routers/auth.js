@@ -4,7 +4,7 @@ const AuthController = require('../controllers/auth');
 const User = require('../models/user');
 const chalk = require('chalk');
 
-router.get('/login', async (req, res) => {
+router.get('/login', async(req, res) => {
     const isLoggedIn = await AuthController.isLoggedIn(req.cookies);
     if (isLoggedIn) {
         console.log('true');
@@ -12,10 +12,10 @@ router.get('/login', async (req, res) => {
     } else {
         login_error = false;
         not_authenticated = false;
-        if (req.query.user_created===true) {
-            user_registered=true;
+        if (req.query.user_created === true) {
+            user_registered = true;
         } else {
-            user_registered=false;
+            user_registered = false;
         }
         res.render('login', {
             user_registered,
@@ -24,13 +24,13 @@ router.get('/login', async (req, res) => {
     }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', async(req, res) => {
     AuthController.login(req.body)
         .then((token) => {
-            res.cookie('auth_token', token, {httpOnly: true});
+            res.cookie('auth_token', token, { httpOnly: true });
             res.redirect('/products');
         })
-        .catch((e)=> {
+        .catch((e) => {
             login_error = true;
             user_registered = false
             res.render('login', {
@@ -45,10 +45,10 @@ router.get('/register', (req, res) => {
     res.render('register');
 });
 
-router.post('/register', async (req, res) => {
-    const user = await User.findOne({email: req.body.email});
+router.post('/register', async(req, res) => {
+    const user = await User.findOne({ email: req.body.email });
     if (user) {
-        user_exists=true;
+        user_exists = true;
         res.render('register', {
             user_exists
         });
@@ -72,18 +72,18 @@ router.get('/logout', (req, res) => {
             res.redirect('/');
         })
         .catch((e) => {
-            res.redirect('/'); 
+            res.redirect('/');
         });
 });
 
-router.get('/status', async (req, res) => {
+router.get('/status', async(req, res) => {
     try {
         var user_info = '';
         if (req.cookies.auth_token) {
             jwt = require('jsonwebtoken');
             const token = req.cookies.auth_token;
             const decoded_token = jwt.verify(token, process.env.JSON_SECRET_TOKEN);
-            const user = await User.findOne({_id: decoded_token._id, 'tokens.token': token});
+            const user = await User.findOne({ _id: decoded_token._id, 'tokens.token': token });
             user_info = user;
         }
         res.send({
@@ -95,7 +95,7 @@ router.get('/status', async (req, res) => {
         console.log(chalk.red(`ERROR: ${e}`));
         res.render('error', {
             error_code: 500
-        }); 
+        });
     }
 });
 

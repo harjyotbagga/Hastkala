@@ -8,7 +8,8 @@
 <body onload="getPriceFormat()">
 	<section class="spicehead text-center main-col main-font">
 		<h3>Spice Boxes</h3>
-		<p class="sec-col">Add rich vibes of traditional flavors to your cooking space and make your spice storage organized
+		<p class="sec-col">Add rich vibes of traditional flavors to your cooking space and make your spice storage
+			organized
 			and aesthetic with elegantly crafted wooden spice boxes, exclusively brought to you by HASTKALA.</h6>
 	</section>
 	<hr>
@@ -21,17 +22,20 @@
 						<li class="nav-item align-self-center" role="presentation">View As</li>
 						<li class="nav-item" role="presentation">
 							<a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-								aria-controls="pills-home" aria-selected="true"><i class="fa fa-th" aria-hidden="true"></i></a>
+								aria-controls="pills-home" aria-selected="true"><i class="fa fa-th"
+									aria-hidden="true"></i></a>
 						</li>
 						<li class="nav-item" role="presentation">
-							<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
-								aria-controls="pills-profile" aria-selected="false"><i class="fa fa-th-list" aria-hidden="true"></i></a>
+							<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+								role="tab" aria-controls="pills-profile" aria-selected="false"><i class="fa fa-th-list"
+									aria-hidden="true"></i></a>
 						</li>
 					</ul>
 				</div>
 				<div class="col-md-4 col-6">
 					<ul class="mb-0">
-						<li class="nav-item align-self-center" role="presentation"><i>{{product_count}} Product(s)</i></li>
+						<li class="nav-item align-self-center" role="presentation"><i>{{product_count}} Product(s)</i>
+						</li>
 					</ul>
 				</div>
 				<div class="col-md-4 col-12">
@@ -141,17 +145,14 @@
 	</div>
 
 	<div class="tab-content  " id="pills-tabContent">
-		<div class="tab-pane spicehead fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+		<div class="tab-pane spicehead fade show active" id="pills-home" role="tabpanel"
+			aria-labelledby="pills-home-tab">
 			<div class="row">
 				{{#each product_list}}
 				<div class="col-md-4">
 					<a href="/product?id={{this._id}}">
 						<div class="gridview-img mb-3">
 							<img src="./assets/images/products/EL-005-614_A_1024x1024@2x.jpg">
-							{{!-- <div class="middle">
-								<button href="/cart?id={{this._id}}" class="btn btn-dark"><i class="fa fa-shopping-cart "
-										aria-hidden="true"></i></button>
-							</div> --}}
 						</div>
 					</a>
 					<p>{{ this.name }}</p>
@@ -163,18 +164,22 @@
 						<span>7 Reviews</span>
 					</p>
 					<p><small class="text-muted" style="text-decoration:line-through; "><span
-								class="price-content">2000</span></small>&emsp;<span class="price-content">{{this.price}}</span></p>
+								class="price-content">2000</span></small>&emsp;<span
+							class="price-content">{{this.price}}</span></p>
 				</div>
 				{{/each}}
 			</div>
 		</div>
 		<div class="tab-pane fade spicehead " id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 			<div class="row">
+				{{#each product_list}}
 				<div class="col-md-2 col-3">
-					<a href="#"><img src="./assets/images/products/EL-005-614_A_1024x1024@2x.jpg"></a>
+					<a href="/product?id={{this._id}}"><img
+							src="./assets/images/products/EL-005-614_A_1024x1024@2x.jpg"></a>
 				</div>
+				<br><br>
 				<div class="col-md-8 col-6 align-self-center">
-					<p>"Twelve Blends" Spice Box with 12 containers & spoon in Sheesham wood</p>
+					<p>{{this.name}}</p>
 					<p> <span><i class="fa fa-star" aria-hidden="true"></i></span>
 						<span><i class="fa fa-star" aria-hidden="true"></i></span>
 						<span><i class="fa fa-star" aria-hidden="true"></i></span>
@@ -185,9 +190,10 @@
 					<p>Sale</p>
 				</div>
 				<div class="col-md-2 col-3 align-self-center">
-					<p class="text-muted" style="text-decoration:line-through;">Rs.1890</p>
-					<p>Rs.1600</p>
+					<p class="text-muted price-content" style="text-decoration:line-through;">2000</p>
+					<p class="price-content">{{this.price}}</p>
 				</div>
+				{{/each}}
 			</div>
 		</div>
 	</div>
